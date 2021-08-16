@@ -394,6 +394,7 @@ li{
 
 .product {
   overflow: hidden;
+  border: 2px solid var(--primary);
 }
 
 .product .img-container {
