@@ -29,15 +29,23 @@ def signup(request):
         last_name = postData.get('last_name')
         email = postData.get('email')
         password = postData.get('password')
-        phone = postData.get('phone')
-        customer = Customer(first_name=first_name,
-        last_name=last_name,
-        phone=phone,
-        email=email,
-        password=password
-        )
-        customer.register()
-        return HttpResponse("signup success")
+        #validation
+        error_msg = None
 
+        if(not first_name):
+           error_msg = "First Name Required !!"
+        elif len(first_name) < 4:
+                error_msg = "First Name Must be 4 char long"
+        if(not error_msg):
+             phone = postData.get('phone')
+             customer = Customer(first_name=first_name,
+             last_name=last_name,
+             phone=phone,
+             email=email,
+             password=password
+             )
+             customer.register()
+        else:
+            return render(request, 'signup.html',{'error': error_msg})
         
 

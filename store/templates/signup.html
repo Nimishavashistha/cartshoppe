@@ -102,7 +102,13 @@ body {
 </head>
 <body>
 <div class="signup-form">
-    <form action="/signup" method="post">{% csrf_token %}
+    <form action="/signup" method="post">
+		{% csrf_token %}
+		{% if error %}
+		<div class="alert alert-danger" role="alert">
+			{{error}}
+		</div>
+		{% endif %}
 		<h2>Register</h2>
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
