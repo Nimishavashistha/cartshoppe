@@ -113,15 +113,15 @@ body {
 		<p class="hint-text">Create your account. It's free and only takes a minute.</p>
         <div class="form-group">
 			<div class="row">
-				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required"></div>
-				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required"></div>
+				<div class="col"><input type="text" class="form-control" name="first_name" placeholder="First Name" required="required" value="{{values.first_name}}"></div>
+				<div class="col"><input type="text" class="form-control" name="last_name" placeholder="Last Name" required="required" value="{{values.last_name}}"></div>
 			</div>        	
         </div>
         <div class="form-group">
-        	<input type="email" class="form-control" name="email" placeholder="Email" required="required">
+        	<input type="email" class="form-control" name="email" placeholder="Email" required="required" value="{{values.email}}">
         </div>
 		<div class="form-group">
-        	<input type="number" class="form-control" name="phone" placeholder="Phone no" required="required">
+        	<input type="number" class="form-control" name="phone" placeholder="Phone no" required="required" value="{{values.phone}}">
         </div>
 		<div class="form-group">
             <input type="password" class="form-control" name="password" placeholder="Password" required="required">
