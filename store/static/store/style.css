@@ -38,6 +38,9 @@ li{
   max-width: 114rem;
   margin: 0 auto;
 }
+.btn-main{
+  color: #ff4545;
+}
 @media only screen and (max-width: 1200rem) {
   .container{
     padding: 0 3rem;
