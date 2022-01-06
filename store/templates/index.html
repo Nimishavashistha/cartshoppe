@@ -53,9 +53,15 @@
     <div class="product">
       <div class="img-container">
         <img src="{{product.image.url}}" alt="" />
-        <div class="addCart">
-          <i class="fas fa-shopping-cart"></i>
-        </div>
+        <form action="/" method="POST">
+          {% csrf_token %}
+          <input hidden type="text" name="product" value='{{product.id}}'>
+          
+          <div class="addCart">
+            <button type="submit"> <i class="fas fa-shopping-cart"></i></button>
+           
+          </div>
+        </form>
 
         <ul class="side-icons">
           <span><i class="fas fa-search"></i></span>
