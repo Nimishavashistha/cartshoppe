@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% load cart %}
 
 <!-- Hero -->
 {% load static %}
@@ -53,6 +54,7 @@
     <div class="product">
       <div class="img-container">
         <img src="{{product.image.url}}" alt="" />
+
         <form action="/" method="POST">
           {% csrf_token %}
           <input hidden type="text" name="product" value='{{product.id}}'>
@@ -73,6 +75,24 @@
         <a href="">{{product.name}}</a>
         <div class="price">
           <span><b>Rs. {{product.price}}</b></span>
+        </div>
+        <div class="card-footer p-0 row no-gutters">
+
+          {% if product|is_in_cart:request.session.cart %}
+          <form action="/" class="col-2" method="post">
+            {% csrf_token %}
+            <input hidden type="text" name="product" value='{{product.id}}'>
+            <input hidden type="text" name="remove" value='True'>
+            <input type="submit" value=" - " class="btn btn-block btn-secondary">
+          </form>
+          <div class="text-center col">{{product|cart_quantity:request.session.cart}} in cart</div>
+          <form action="/" class="col-2" method="post">
+            {% csrf_token %}
+            <input hidden type="text" name="product" value='{{product.id}}'>
+            <input type="submit" value=" + " class="btn btn-block btn-secondary">
+          </form>
+          {% endif %}
+          
         </div>
       </div>
     </div>
