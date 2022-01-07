@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +6,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Bootstrap Simple Registration Form</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<link rel="stylesheet" href="{% static 'store/style.css' %}" />
+
+<!-- box icons -->
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <style>
 body {
 	color: #fff;
 	font-family: 'Roboto', sans-serif;
+}
+a:hover{
+	text-decoration: none;
 }
 .form-control {
 	height: 40px;
@@ -25,6 +33,7 @@ body {
 .signup-form {
 	width: 450px;
 	margin: 0 auto;
+	margin-top: 30px;
 	padding: 30px 0;
   	font-size: 15px;
 }
@@ -101,6 +110,36 @@ body {
 </style>
 </head>
 <body>
+	<nav class="nav">
+        <div class="wrapper container">
+            <div class="logo"><a href="">CARTSHOPPE</a></div>
+            <ul class="nav-list">
+                <div class="top">
+                    <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+                </div>
+                <li><a href="/">Home</a></li>
+                {% if request.session.customer %}
+                   <li><a href="/orders">orders</a></li>
+                   <li><a href="/logout">Logout</a></li>
+                {% else %}
+				<li class="icons">
+                    <span>
+                        <a href="/cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <small class="count d-flex">0</small>
+                        </a>
+                    </span>
+                    {% comment %} <span>
+                        <i class="fas fa-search"></i>
+                    </span> {% endcomment %}
+                   </li>
+                   <li><a href="/signup">Signup</a></li>
+                   <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+            <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
 <div class="signup-form">
     <form action="/login" method="POST">
 		{% csrf_token %}
@@ -135,8 +174,8 @@ body {
 		<div class="form-group">
             <button type="submit" class="btn btn-lg btn-block" value="login">Login</button>
         </div>
+		<div class="text-center">Not have an account yet? <a href="/signup">Register here</a></div>
     </form>
-	<div class="text-center">Already have an account? <a href="#">Sign in</a></div>
 </div>
 </body>
 </html>

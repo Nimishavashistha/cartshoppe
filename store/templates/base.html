@@ -33,21 +33,25 @@
                 <div class="top">
                     <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
                 </div>
-                <li><a href="">Home</a></li>
-                <li><a href="">Products</a></li>
-                <li><a href="/signup">Signup</a></li>
-                <li><a href="/login">Login</a></li>
-                <li><a href="/login">Logout</a></li>
-                <li><a href="">Vendors</a></li>
+                <li><a href="/">Home</a></li>
+                {% if request.session.customer %}
+                   <li><a href="/orders">orders</a></li>
+                   <li><a href="/logout">Logout</a></li>
+                {% else %}
                 <li class="icons">
                     <span>
-                        <i class="fas fa-shopping-bag"></i>
-                        <small class="count d-flex">0</small>
+                        <a href="/cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <small class="count d-flex">0</small>
+                        </a>
                     </span>
-                    <span>
+                    {% comment %} <span>
                         <i class="fas fa-search"></i>
-                    </span>
-                </li>
+                    </span> {% endcomment %}
+                   </li>
+                   <li><a href="/signup">Signup</a></li>
+                   <li><a href="/login">Login</a></li>
+                {% endif %}
             </ul>
             <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
         </div>
