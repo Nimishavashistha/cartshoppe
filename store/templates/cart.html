@@ -137,6 +137,7 @@
 </head>
 <body>
     {% load cart %}
+    {% load custom_filter %}
 	<nav class="nav">
         <div class="wrapper container">
             <div class="logo"><a href="">CARTSHOPPE</a></div>
@@ -199,9 +200,9 @@
                                     </td>
                                     <td> {{product|cart_quantity:request.session.cart}}
                                     <td>
-                                        <div class="price-wrap"> <var class="price">{{product.price}}</var></div>
+                                        <div class="price-wrap"> <var class="price">{{product.price|currency}}</var></div>
                                     </td>
-                                    <td> {{product|price_total:request.session.cart}}
+                                    <td> {{product|price_total:request.session.cart|currency}}
                                     <td class="text-right d-none d-md-block"> <a data-original-title="Save to Wishlist" title="" href="" class="btn btn-light" data-toggle="tooltip" data-abc="true"> <i class="fa fa-heart"></i></a> <a href="" class="btn btn-light" data-abc="true"> Remove</a> </td>
                                 </tr>
                             {% endfor %}
@@ -225,7 +226,7 @@
                     <div class="card-body">
                         <dl class="dlist-align">
                             <dt>Total price:</dt>
-                            <dd class="text-right ml-3">{{products|total_cart_price:request.session.cart}}</dd>
+                            <dd class="text-right ml-3">{{products|total_cart_price:request.session.cart|currency}}</dd>
                         </dl>
                         <dl class="dlist-align">
                             <dt>Discount:</dt>

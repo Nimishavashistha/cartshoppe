@@ -2,6 +2,7 @@
 {% block content %}
 
 {% load cart %}
+{% load custom_filter %}
 
 <!-- Hero -->
 {% load static %}
@@ -74,7 +75,7 @@
       <div class="bottom">
         <a href=""><b>{{product.name}}</b></a>
         <div class="price">
-          <span style="color:grey;font-size:14px"><b>Rs. {{product.price}}</b></span>
+          <span style="color:grey;font-size:14px"><b>{{product.price|currency}}</b></span>
         </div>
         <div class="card-footer p-0 no-gutters">
 
