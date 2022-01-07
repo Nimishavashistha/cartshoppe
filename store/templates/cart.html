@@ -5,7 +5,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Bootstrap Simple Registration Form</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <link rel="stylesheet" href="{% static 'store/style.css' %}" />
 
 <!-- box icons -->
@@ -22,7 +24,18 @@
         font-family: 'Open Sans', serif;
         font-size: 14px
     }
-    
+   
+    .form-text{
+        padding: 15px 0;
+        font-size:12pt;
+    }
+    .orange-btn{
+       background-color: #ff4545;
+       color:white;
+    }
+    .orange-btn:hover{
+        background-color: #ff4545;
+     }
     .container-fluid {
         margin-top: 70px
     }
@@ -236,11 +249,60 @@
                             <dt>Total:</dt>
                             <dd class="text-right text-dark b ml-3"><strong>$59.97</strong></dd>
                         </dl>
-                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Make Purchase </a> <a href="#" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
+                        <hr> <a href="#" class="btn btn-out btn-primary btn-square btn-main" data-toggle="modal" data-target="#exampleModal"> Make Purchase </a> <a href="/" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true">Continue Shopping</a>
                     </div>
                 </div>
             </aside>
         </div>
     </div>
+
+
+  
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">
+                  Check Out Form
+              </h3>
+              <hr>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="m-2 p-3">
+                <form action="/check-out" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="">Address</label>
+                      <input type="text" name="address" id="" class="form-control form-text" placeholder="" aria-describedby="helpId">
+                      
+                    </div>
+                    <div class="form-group">
+                        <label for="">Phone</label>
+                        <input type="text" name="phone" id="" class="form-control form-text" placeholder="" aria-describedby="helpId">
+                      </div>
+    
+                      <input type="submit" class="btn orange-btn float-right btn-outline-info col-lg-6 form-text" value="Check out">
+                </form>
+              </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+    
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"></script>
+
+  
 </body>
 </html>
