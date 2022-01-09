@@ -34,10 +34,6 @@
                     <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
                 </div>
                 <li><a href="/">Home</a></li>
-                {% if request.session.customer %}
-                   <li><a href="/orders">orders</a></li>
-                   <li><a href="/logout">Logout</a></li>
-                {% else %}
                 <li class="icons">
                     <span>
                         <a href="/cart">
@@ -49,6 +45,10 @@
                         <i class="fas fa-search"></i>
                     </span> {% endcomment %}
                    </li>
+                {% if request.session.customer %}
+                   <li><a href="/orders">orders</a></li>
+                   <li><a href="/logout">Logout</a></li>
+                {% else %}
                    <li><a href="/signup">Signup</a></li>
                    <li><a href="/login">Login</a></li>
                 {% endif %}
