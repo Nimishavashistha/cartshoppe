@@ -38,7 +38,7 @@
                     <span>
                         <a href="/cart">
                             <i class="fas fa-shopping-bag"></i>
-                            <small class="count d-flex">0</small>
+                            <small class="count d-flex">{{request.session.cart.keys|length}}</small>
                         </a>
                     </span>
                     {% comment %} <span>

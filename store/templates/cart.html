@@ -163,7 +163,7 @@ integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6J
                     <span>
                         <a href="/cart">
                             <i class="fas fa-shopping-bag"></i>
-                            <small class="count d-flex">0</small>
+                            <small class="count d-flex">{{request.session.cart.keys|length}}</small>
                         </a>
                     </span>
                     {% comment %} <span>

@@ -165,7 +165,7 @@
                     <span>
                         <a href="/cart">
                             <i class="fas fa-shopping-bag"></i>
-                            <small class="count d-flex">0</small>
+                            <small class="count d-flex">{{request.session.cart.keys|length}}</small>
                         </a>
                     </span>
                     {% comment %} <span>
@@ -215,13 +215,17 @@
                                             </figcaption>
                                         </figure>
                                     </td>
-                                    <td> {{order.quantity}}
+                                    <td> {{order.quantity}}</td>
                                     <td>
                                         <div class="price-wrap"> <var class="price">{{order.price|currency}}</var></div>
                                     </td>
-                                    <td> {{order.date}}
+                                    <td> {{order.date}}</td>
                                     <td> {{order.quantity|multiply:order.price|currency}}
-                                    <td> {{order.status|default:'Pending'}}
+                                    {% if order.status %}
+                                       <td><span class="badge badge-success">Completed</span></td>
+                                    {% else %}
+                                    <td><span class="badge badge-warning">Pending</span></td>
+                                    {% endif %}
         
                                 </tr>
                             {% endfor %}
