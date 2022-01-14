@@ -51,7 +51,7 @@
   <div class="product-layout">
     
     {% for product in products %}
-
+    <a href="{% url 'productDetail' product.id %}" class="btn">
     <div class="product card mx-auto mb-3"  id={{product.id}} style="width: 25rem;">
       <div class="img-container">
         <img src="{{product.image.url}}" alt="" />
@@ -77,36 +77,9 @@
         <div class="price">
           <span style="color:grey;font-size:14px"><b>{{product.price|currency}}</b></span>
         </div>
-        <div class="card-footer p-0 no-gutters">
-
-          {% if product|is_in_cart:request.session.cart %}
-          <div class="row no-gutters">
-            <form action="/#{{product.id}}" class="col-2 " method="post">
-              {% csrf_token %}
-              <input hidden type="text" name='product' value='{{product.id}}'>
-              <input hidden type="text" name='remove' value='True'>
-              <input type="submit" value=" - " class="btn btn-block border-right" style="background-color:#ff4545; color:white">
-            </form>
-            <div class="text-center col">{{product|cart_quantity:request.session.cart}} in Cart</div>
-            <form action="/#{{product.id}}" class="col-2 " method="post">
-              {% csrf_token %}
-              <input hidden type="text" name='product' value='{{product.id}}'>
-              <input type="submit" value=" + " class="btn btn-block border-left" style="background-color:#ff4545; color:white">
-            </form>
-          </div>
-          {% else %}
-          <form action="/#{{product.id}}" method="POST" class="btn-block">
-            {% csrf_token %}
-            <input hidden type="text" name='product' value='{{product.id}}'>
-            <input type="submit" class="float-right btn btn-light  form-control"
-              value="Add To Cart" style="background-color:#ff4545; color:white;font-size:18px">
-          </form>
-          {% endif %}
-
-        </div>
       </div>
     </div>
-      
+  </a>
     {% endfor %}
 
     

@@ -24,7 +24,7 @@
 </head>
 
 <body>
-
+    {% load custom_filter %}
     <!-- Navigation -->
     <nav class="nav">
         <div class="wrapper container">
@@ -46,6 +46,7 @@
                     </span> {% endcomment %}
                    </li>
                 {% if request.session.customer %}
+                   <li><a href="#">{{request.session.customer|getname}}</a></li>
                    <li><a href="/orders">orders</a></li>
                    <li><a href="/logout">Logout</a></li>
                 {% else %}

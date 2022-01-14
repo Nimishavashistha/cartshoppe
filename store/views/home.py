@@ -46,4 +46,9 @@ class Index(View):
         print(request.session['cart'])
         return redirect('homepage')
         
+class ProductDetailView(View):
+    def get(self,request,pk):
+        print("inside productDetailView function")
+        product = Product.objects.get(pk=pk)
+        return render(request, 'productDetail.html',{'product':product})
            

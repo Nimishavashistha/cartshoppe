@@ -1,0 +1,111 @@
+{% load cart %}
+{% load custom_filter %}
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    
+    <link rel="stylesheet" href="{% static 'store/style.css' %}" />
+
+    <!-- box icons -->
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+        integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <title>CARTSHOPPE</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="wrapper container">
+            <div class="logo"><a href="">CARTSHOPPE</a></div>
+            <ul class="nav-list">
+                <div class="top">
+                    <label for="" class="btn close-btn"><i class="fas fa-times"></i></label>
+                </div>
+                <li><a href="/">Home</a></li>
+                <li class="icons">
+                    <span>
+                        <a href="/cart">
+                            <i class="fas fa-shopping-bag"></i>
+                            <small class="count d-flex">{{request.session.cart.keys|length}}</small>
+                        </a>
+                    </span>
+                    {% comment %} <span>
+                        <i class="fas fa-search"></i>
+                    </span> {% endcomment %}
+                   </li>
+                {% if request.session.customer %}
+                   <li><a href="/orders">orders</a></li>
+                   <li><a href="/logout">Logout</a></li>
+                {% else %}
+                   <li><a href="/signup">Signup</a></li>
+                   <li><a href="/login">Login</a></li>
+                {% endif %}
+            </ul>
+            <label for="" class="btn open-btn"><i class="fas fa-bars"></i></label>
+        </div>
+    </nav>
+
+<div class="container my-5">
+    <div class="row">
+     <div class="col-sm-6 text-center align-self-center">
+      <img src="{{product.image.url}}" alt="" class="img-fluid img-thumbnail">
+     </div>
+     <div class="col-sm-5 offset-sm-1">
+      <h2>{{product.name}}</h2>
+      <hr>
+      <p>{{product.description}}</p> <br>
+      <h4>{{product.price|currency}}<small class="fw-light text-decoration-line-through"> 15999</small></h4> <br>
+      {% if product|is_in_cart:request.session.cart %}
+      <div class="row no-gutters">
+        <form action="/#{{product.id}}" class="col-2 " method="post">
+          {% csrf_token %}
+          <input hidden type="text" name='product' value='{{product.id}}'>
+          <input hidden type="text" name='remove' value='True'>
+          <input type="submit" value=" - " class="btn" style="background-color:#ff4545; color:white">
+        </form>
+        <div class="text-center col">{{product|cart_quantity:request.session.cart}} in Cart</div>
+        <form action="/#{{product.id}}" class="col-2 " method="post">
+          {% csrf_token %}
+          <input hidden type="text" name='product' value='{{product.id}}'>
+          <input type="submit" value=" + " class="btn" style="background-color:#ff4545; color:white">
+        </form>
+      </div>
+      {% else %}
+      <form action="/#{{product.id}}" method="POST">
+        {% csrf_token %}
+        <input hidden type="text" name='product' value='{{product.id}}'>
+        <input type="submit" class="float-right btn btn-light  form-control"
+          value="Add To Cart" style="background-color:#ff4545; color:white; font-size:15px; width:150px">
+      </form>
+      {% endif %}
+
+      <input type="submit" class="btn btn-light  form-control"
+      value="Buy Now"style="background-color:blue; color:white;font-size:15px;width:150px">
+      <h5 class="mt-5">Available Offers</h5>
+      <ul>
+       <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
+       <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+       <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+       <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+      </ul>
+     </div>
+    </div>
+   </div>
+
+</body>
+
+</html>
