@@ -35,5 +35,22 @@ def logout(request):
     request.session.clear()
     return redirect('login')
 
+class PasswordResetView(View):
+    def get(self,request):
+         return render(request, 'password_reset.html')
+     
+class PasswordResetDoneView(View):
+    def get(self,request):
+         return render(request, 'password_reset_done.html')
+     
+class PasswordResetConfirmView(View):
+    def get(self,request):
+         return render(request, 'password_reset_confirm.html')
+     
+class PasswordResetCompleteView(View):
+    def get(self,request):
+         return render(request, 'password_reset_complete.html')
+
+
 
 

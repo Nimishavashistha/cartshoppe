@@ -124,6 +124,7 @@ STATIC_URL = '/static/'
 #  managing media
 MEDIA_URL = '/image/download/'
 MEDIA_ROOT = BASE_DIR
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Default primary key field type
